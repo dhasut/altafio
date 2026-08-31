@@ -1,5 +1,4 @@
 import Image from "next/image";
-import Link from "next/link";
 
 type ProjectDetailProps = {
   name: string;
@@ -14,17 +13,15 @@ export function ProjectDetail({ name, status, summary, points, icon, note }: Pro
   return (
     <main className="page">
       <article className="glass-card" aria-labelledby="project-title">
-        <Link className="back-link" href="/projects">← All projects</Link>
+        <a className="back-link" href="/projects">← All projects</a>
+        <p className="eyebrow project-detail__status">{status}</p>
         <div className="project-detail__heading">
-          <div className="project-card__icon" aria-hidden="true">
+          <div className="project-card__icon project-detail__icon" aria-hidden="true">
             {icon === "dictio" ? (
               <Image src="/images/dictio-icon.png" alt="" width={64} height={64} />
             ) : icon}
           </div>
-          <div>
-            <p className="eyebrow">{status}</p>
-            <h1 id="project-title">{name}</h1>
-          </div>
+          <h1 id="project-title">{name}</h1>
         </div>
         <p className="lead">{summary}</p>
         <section className="content-block project-points">

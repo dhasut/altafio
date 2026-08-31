@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import { DM_Sans, Outfit } from "next/font/google";
+import Script from "next/script";
 import { SkyBackdrop } from "@/components/site/sky-backdrop";
 import { SiteHeader } from "@/components/site/site-header";
 import { SiteFooter } from "@/components/site/site-footer";
@@ -7,6 +8,7 @@ import "./globals.css";
 
 const dmSans = DM_Sans({ variable: "--font-body", subsets: ["latin"] });
 const outfit = Outfit({ variable: "--font-display", subsets: ["latin"] });
+const GA_MEASUREMENT_ID = "G-RQY547RBTN";
 
 export const dynamic = "force-static";
 
@@ -40,6 +42,18 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body className={`${dmSans.variable} ${outfit.variable}`}>
+        <Script
+          src={`https://www.googletagmanager.com/gtag/js?id=${GA_MEASUREMENT_ID}`}
+          strategy="afterInteractive"
+        />
+        <Script id="google-analytics" strategy="afterInteractive">
+          {`
+            window.dataLayer = window.dataLayer || [];
+            function gtag(){dataLayer.push(arguments);}
+            gtag('js', new Date());
+            gtag('config', '${GA_MEASUREMENT_ID}');
+          `}
+        </Script>
         <SkyBackdrop />
         <div className="site-frame">
           <SiteHeader />

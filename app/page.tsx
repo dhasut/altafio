@@ -1,5 +1,3 @@
-import Link from "next/link";
-
 export default function HomePage() {
   return (
     <main className="page page--home">
@@ -11,12 +9,12 @@ export default function HomePage() {
           prototypes and builds useful digital products and services.
         </p>
         <div className="button-row">
-          <Link className="button" href="/services">
+          <a className="button" href="/services">
             Services
-          </Link>
-          <Link className="button button--quiet" href="/projects">
+          </a>
+          <a className="button button--quiet" href="/projects">
             Projects
-          </Link>
+          </a>
         </div>
         <p className="quiet-note">Design × technology × practical delivery</p>
       </section>

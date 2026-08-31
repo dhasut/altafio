@@ -1,9 +1,14 @@
 import type { Metadata } from "next";
+import { notFound } from "next/navigation";
 import { ProjectDetail } from "@/components/site/project-detail";
+import { getProject } from "@/data/site";
 
 export const metadata: Metadata = { title: "PencilMD" };
 
 export default function PencilMDPage() {
+  const project = getProject("pencilmd");
+  if (!project || project.archived) notFound();
+
   return (
     <ProjectDetail
       name="PencilMD"

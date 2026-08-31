@@ -22,7 +22,16 @@ export const services = [
   },
 ];
 
-export const projects = [
+export type Project = {
+  slug: string;
+  name: string;
+  short: string;
+  status: string;
+  icon: string;
+  archived?: boolean;
+};
+
+export const projects: Project[] = [
   {
     slug: "dictio",
     name: "Dictio",
@@ -36,6 +45,7 @@ export const projects = [
     short: "An iPad notebook that turns Apple Pencil handwriting into clean Markdown for BrainPA.",
     status: "In development",
     icon: "P",
+    archived: true,
   },
   {
     slug: "smartbricks",
@@ -43,5 +53,12 @@ export const projects = [
     short: "A lower-cost DIY robotics and coding kit for learning, building and prototyping.",
     status: "Working title",
     icon: "S",
+    archived: true,
   },
 ];
+
+export const publishedProjects = projects.filter((project) => !project.archived);
+
+export function getProject(slug: string) {
+  return projects.find((project) => project.slug === slug);
+}

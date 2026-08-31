@@ -126,6 +126,8 @@ a { color: inherit; }
   backdrop-filter: blur(34px) saturate(1.35);
 }
 .glass-card--wide { width: min(100%, 62rem); }
+.glass-card--compact { width: min(100%, 34rem); }
+.glass-card--compact .section-heading { margin-bottom: 1.25rem; }
 .eyebrow {
   margin: 0 0 0.7rem;
   color: var(--accent-strong);
@@ -170,6 +172,7 @@ h3 { font-size: 1.25rem; letter-spacing: -0.02em; }
 .primary-label { display: block; margin-bottom: 0.35rem; color: var(--accent); font-size: 0.65rem; font-weight: 750; letter-spacing: 0.12em; text-transform: uppercase; }
 
 .project-grid { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 1rem; }
+.project-grid--compact { grid-template-columns: 1fr; }
 .project-card {
   display: flex;
   min-height: 17rem;
@@ -198,7 +201,7 @@ h3 { font-size: 1.25rem; letter-spacing: -0.02em; }
 .project-card h2 { margin-top: 1.3rem; font-size: 1.35rem; }
 .project-card p { margin: 0.7rem 0 1.3rem; color: var(--muted); font-size: 0.92rem; }
 .project-card a { margin-top: auto; color: var(--accent-strong); font-size: 0.84rem; font-weight: 700; text-decoration: none; }
-.project-card a:hover { color: white; }
+.project-grid--compact .project-card { min-height: 0; }
 
 .content-stack { display: grid; gap: 2rem; }
 .content-block { padding-top: 1.6rem; border-top: 1px solid rgba(255,255,255,0.11); }
@@ -209,11 +212,14 @@ h3 { font-size: 1.25rem; letter-spacing: -0.02em; }
 .bullet-list { margin: 0; padding-left: 1.15rem; color: var(--muted); }
 .bullet-list li + li { margin-top: 0.55rem; }
 .back-link { display: inline-block; margin-bottom: 1.5rem; color: var(--accent-strong); font-size: 0.85rem; font-weight: 700; text-decoration: none; }
-.project-detail__heading { display: flex; align-items: center; gap: 1.2rem; }
-.project-detail__heading h1 { font-size: clamp(2.3rem, 6vw, 4.3rem); }
+.project-detail__status { margin-bottom: 0.55rem; }
+.project-detail__heading { display: flex; align-items: center; gap: 1.1rem; }
+.project-detail__icon { flex-shrink: 0; width: 4rem; height: 4rem; }
+.project-detail__heading h1 { font-size: clamp(2.3rem, 6vw, 4.3rem); line-height: 1; }
 .project-points { margin-top: 1.8rem; }
 .project-note { margin-top: 1.2rem !important; font-size: 0.86rem; font-style: italic; }
 .contact-link { display: inline-block; margin-top: 1.4rem; color: white; font-family: var(--font-display), sans-serif; font-size: clamp(1.3rem, 4vw, 2rem); font-weight: 650; text-decoration-thickness: 1px; text-underline-offset: 0.25em; }
+.contact-email-button { margin-top: 1.4rem; }
 
 .site-footer {
   display: flex;

@@ -1,5 +1,4 @@
 import Image from "next/image";
-import Link from "next/link";
 
 type ProjectCardProps = {
   project: {
@@ -24,7 +23,7 @@ export function ProjectCard({ project }: ProjectCardProps) {
       </div>
       <h2>{project.name}</h2>
       <p>{project.short}</p>
-      <Link href={`/projects/${project.slug}`}>View project →</Link>
+      <a href={`/projects/${project.slug}`}>View project →</a>
     </article>
   );
 }

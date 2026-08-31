@@ -1,9 +1,14 @@
 import type { Metadata } from "next";
+import { notFound } from "next/navigation";
 import { ProjectDetail } from "@/components/site/project-detail";
+import { getProject } from "@/data/site";
 
 export const metadata: Metadata = { title: "SmartBricks" };
 
 export default function SmartBricksPage() {
+  const project = getProject("smartbricks");
+  if (!project || project.archived) notFound();
+
   return (
     <ProjectDetail
       name="SmartBricks"
