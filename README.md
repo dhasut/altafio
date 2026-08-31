@@ -70,9 +70,24 @@ Use company language only (no founder / first-person singular) unless that direc
 
 ## Deploy
 
-Push to `master`. GitHub Actions builds and publishes `dist/client/`.
+| Remote | Repo | Role |
+| --- | --- | --- |
+| `origin` | [dhasut/altafio](https://github.com/dhasut/altafio) | **Public** live site (GitHub Pages) |
+| `code` | [dhasut/altafio-code](https://github.com/dhasut/altafio-code) | **Private** source for Cloud Agents |
 
-- Repo: [github.com/dhasut/altafio](https://github.com/dhasut/altafio)
+Push to `master` on **`origin`** to publish the site (GitHub Actions builds `dist/client/`).
+
+Cloud Agent workflow:
+
+1. Open / clone **`altafio-code`** (private)
+2. Make changes and commit there
+3. Publish live by pushing the same commits to the public repo, e.g. from this machine:
+   ```bash
+   git fetch code
+   git push origin code/master:master
+   ```
+   Or add the public repo as a second remote inside the Cloud Agent workspace and push to it when ready.
+
 - Custom domain: `altafio.com`
 - `next.config.ts`: `output: 'export'`, `trailingSlash: false`, `images.unoptimized: true`
 
