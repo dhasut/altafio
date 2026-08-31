@@ -104,7 +104,21 @@ The wordmark, favicon, project icons and social card are placeholders that can b
 
 ## Hosting
 
-The project contains `.openai/hosting.json` and is compatible with OpenAI Sites. No D1 database or R2 bucket is configured. The canonical metadata origin is currently `https://altafio.com`.
+The site is built as a static export for GitHub Pages.
+
+```bash
+npm run build
+```
+
+Static files are written to `dist/client/`. GitHub Actions deploys that folder on push to `master`.
+
+Custom domain: `altafio.com` (via `public/CNAME`).
+
+For local preview of the static export:
+
+```bash
+npx serve dist/client
+```
 
 ## Project handover
 

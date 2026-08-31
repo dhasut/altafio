@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import { ProjectCard } from "@/components/site/project-card";
 import { projects } from "@/data/site";
 
+export const dynamic = "force-static";
 export const metadata: Metadata = { title: "Projects" };
 
 export default function ProjectsPage() {

@@ -8,6 +8,8 @@ import "./globals.css";
 const dmSans = DM_Sans({ variable: "--font-body", subsets: ["latin"] });
 const outfit = Outfit({ variable: "--font-display", subsets: ["latin"] });
 
+export const dynamic = "force-static";
+
 export const metadata: Metadata = {
   title: {
     default: "Altafio — Blue-sky ideas, made real",

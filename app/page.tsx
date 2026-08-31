@@ -1,5 +1,7 @@
 import Link from "next/link";
 
+export const dynamic = "force-static";
+
 export default function HomePage() {
   return (
     <main className="page page--home">
