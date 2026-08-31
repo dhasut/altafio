@@ -1,121 +1,81 @@
 # Altafio
 
-Website for Altafio, an independent creative technology business working across design, digital products and transformation.
+Website for Altafio, an independent creative technology business.
 
 > Blue-sky ideas, made real.
 
-The site is intentionally concise and uses a moving blue-sky background adapted from the earlier Sky Media Lab website. Its current visual identity is provisional while the wider Altafio brand is being developed.
-
-## Current content
-
-- Services led by Creative Technology
-- Design and technology consultancy
-- UX/UI design
-- Service design
-- Digital transformation
-- Product pages for Dictio, PencilMD and SmartBricks
-- Company-focused About and Contact pages
-
-The website uses company language throughout. It should not refer to a founder or use first-person personal language unless that direction changes later.
+Live site: [https://altafio.com](https://altafio.com)
 
 ## Technology
 
-- Vinext and React 19
-- TypeScript
+- Vinext + React 19 + TypeScript
 - Tailwind CSS 4
-- Static export for GitHub Pages
-- Locally hosted Three.js and Vanta Clouds2 assets for the animated sky
+- Static export → GitHub Pages (`dist/client/`)
+- Local Three.js + Vanta Clouds2 sky animation
+- Google Analytics (`G-RQY547RBTN`)
 
-No database, authentication, CMS, analytics or form backend is currently used.
+No database, auth, CMS, or contact form. Contact uses a button that opens the mail client (address is not printed in the HTML).
 
 ## Requirements
 
-- Node.js 22.13 or newer
+- Node.js 22.13+
 - npm
 
 ## Local development
 
-Install dependencies:
-
 ```bash
 npm install
-```
-
-Start the development site:
-
-```bash
 npm run dev
 ```
 
-The default local address is [http://localhost:3000](http://localhost:3000).
-
-## Validation and production build
+Open [http://localhost:3000](http://localhost:3000).
 
 ```bash
-npm run build
-```
-
-Optional checks:
-
-```bash
+npm run build   # static export to dist/client/
+npm run start   # preview export with serve
 npm run lint
-npm run format
-```
-
-After a successful build, preview the static export:
-
-```bash
-npm run start
 ```
 
 ## Routes
 
 | Route | Purpose |
 | --- | --- |
-| `/` | Home and primary Altafio message |
-| `/services` | Services overview |
-| `/projects` | Product and project listing |
+| `/` | Home |
+| `/services` | Services |
+| `/projects` | Published products (Dictio) |
 | `/projects/dictio` | Dictio details |
-| `/projects/pencilmd` | PencilMD details |
-| `/projects/smartbricks` | SmartBricks details; name remains provisional |
-| `/about` | Company overview, capabilities and working approach |
-| `/contact` | Contact email |
+| `/about` | Company overview |
+| `/contact` | Contact |
+
+PencilMD and SmartBricks stay in the repo but are marked `archived` in `data/site.ts`, so they are hidden from the listing and return 404 until re-enabled.
 
 ## Editing content
 
-- `app/page.tsx` — home-page copy
-- `app/about/page.tsx` — company overview
-- `app/services/page.tsx` — services presentation
-- `data/site.ts` — service and project summaries
-- `app/projects/*/page.tsx` — individual project details
-- `app/contact/page.tsx` — contact content
-- `app/layout.tsx` — page metadata and social-sharing metadata
-- `components/site/` — header, footer, sky and project components
-- `app/globals.css` — visual tokens and responsive styling
+- `data/site.ts` — services + project cards (`archived` flag)
+- `app/page.tsx`, `app/about/page.tsx`, `app/services/page.tsx`, `app/contact/page.tsx`
+- `app/projects/*/page.tsx` — project detail copy
+- `app/layout.tsx` — metadata, fonts, analytics
+- `components/site/` — header, footer, sky, project UI, contact button
+- `app/globals.css` — visual tokens and layout
+
+Use company language only (no founder / first-person singular) unless that direction changes.
 
 ## Assets
 
-- `public/images/dictio-icon.png` — Dictio app icon
-- `public/og.png` — default social-sharing image
-- `public/favicon.svg` — temporary Altafio favicon
-- `public/vendor/` and `public/gallery/noise.png` — local animated-sky dependencies
+- `public/images/dictio-icon.png`
+- `public/og.png`, `public/favicon.svg`
+- `public/vendor/`, `public/gallery/noise.png`
+- `public/CNAME` — `altafio.com`
+- `public/.nojekyll` — required for `_next/` on GitHub Pages
 
-The wordmark, favicon, project icons and social card are placeholders that can be replaced when the final brand system is ready.
+## Deploy
 
-## Hosting
+Push to `master`. GitHub Actions builds and publishes `dist/client/`.
 
-The site is built as a static export for GitHub Pages at [https://altafio.com](https://altafio.com).
+- Repo: [github.com/dhasut/altafio](https://github.com/dhasut/altafio)
+- Custom domain: `altafio.com`
+- `next.config.ts`: `output: 'export'`, `trailingSlash: false`, `images.unoptimized: true`
 
-```bash
-npm run build
-```
+## Agent notes
 
-Static files are written to `dist/client/`. GitHub Actions deploys that folder on push to `master`.
-
-Custom domain: `altafio.com` via `public/CNAME` and GitHub Pages settings. Point DNS at GitHub Pages before going live. The project URL `https://dhasut.github.io/altafio/` is not supported; this site is intended for the custom domain only.
-
-`next.config.ts` keeps `trailingSlash: false` because Vinext static export fails on nested routes when it is enabled.
-
-## Project handover
-
-See `AGENTS.md` for implementation context and instructions intended for future AI agents.
+Local Cursor handover notes live in `AGENTS.md` (gitignored). Keep that file current when durable project facts change.
