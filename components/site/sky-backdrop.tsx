@@ -68,7 +68,7 @@ export function SkyBackdrop() {
       layer.current.style.transform = `translate3d(${x}px, ${y}px, 0) scale(1.06)`;
     };
 
-    startClouds();
+    void startClouds();
     window.addEventListener("pointermove", handlePointer, { passive: true });
     return () => {
       cancelled = true;

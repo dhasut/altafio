@@ -23,7 +23,7 @@ The website uses company language throughout. It should not refer to a founder o
 - Vinext and React 19
 - TypeScript
 - Tailwind CSS 4
-- OpenAI Sites project structure and hosting configuration
+- Static export for GitHub Pages
 - Locally hosted Three.js and Vanta Clouds2 assets for the animated sky
 
 No database, authentication, CMS, analytics or form backend is currently used.
@@ -62,7 +62,7 @@ npm run lint
 npm run format
 ```
 
-After a successful build, the local production worker can be started with:
+After a successful build, preview the static export:
 
 ```bash
 npm run start
@@ -104,7 +104,7 @@ The wordmark, favicon, project icons and social card are placeholders that can b
 
 ## Hosting
 
-The site is built as a static export for GitHub Pages.
+The site is built as a static export for GitHub Pages at [https://altafio.com](https://altafio.com).
 
 ```bash
 npm run build
@@ -112,13 +112,9 @@ npm run build
 
 Static files are written to `dist/client/`. GitHub Actions deploys that folder on push to `master`.
 
-Custom domain: `altafio.com` (via `public/CNAME`).
+Custom domain: `altafio.com` via `public/CNAME` and GitHub Pages settings. Point DNS at GitHub Pages before going live. The project URL `https://dhasut.github.io/altafio/` is not supported; this site is intended for the custom domain only.
 
-For local preview of the static export:
-
-```bash
-npx serve dist/client
-```
+`next.config.ts` keeps `trailingSlash: false` because Vinext static export fails on nested routes when it is enabled.
 
 ## Project handover
 

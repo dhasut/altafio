@@ -1,7 +1,6 @@
 import type { Metadata } from "next";
 import { services } from "@/data/site";
 
-export const dynamic = "force-static";
 export const metadata: Metadata = { title: "Services" };
 
 export default function ServicesPage() {

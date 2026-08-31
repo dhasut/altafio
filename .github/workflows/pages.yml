@@ -12,7 +12,7 @@ permissions:
 
 concurrency:
   group: pages
-  cancel-in-progress: false
+  cancel-in-progress: true
 
 jobs:
   build:
@@ -24,9 +24,14 @@ jobs:
           node-version: 22
           cache: npm
       - run: npm ci
+      - run: npm run lint
       - run: npm run build
-        env:
-          GITHUB_PAGES: 'true'
+      - name: Verify static export output
+        run: |
+          test -f dist/client/index.html
+          test -f dist/client/about.html
+          test -f dist/client/services.html
+          test -f dist/client/projects.html
       - uses: actions/upload-pages-artifact@v3
         with:
           path: dist/client

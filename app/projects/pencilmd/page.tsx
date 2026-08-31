@@ -1,7 +1,6 @@
 import type { Metadata } from "next";
 import { ProjectDetail } from "@/components/site/project-detail";
 
-export const dynamic = "force-static";
 export const metadata: Metadata = { title: "PencilMD" };
 
 export default function PencilMDPage() {
