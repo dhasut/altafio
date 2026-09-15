@@ -48,7 +48,8 @@ export function SkyBackdrop() {
       started = true;
       try {
         await loadScript("/vendor/three.min.js");
-        await loadScript("/vendor/vanta.clouds2.min.js");
+        // Cache-bust after local shader patch (UV lattice fix; no spatial dither).
+        await loadScript("/vendor/vanta.clouds2.min.js?v=altafio-uv3");
         if (cancelled || !canvasHost.current) return;
         const vanta = (window as VantaWindow).VANTA;
         if (!vanta?.CLOUDS2) return;
@@ -98,9 +99,12 @@ export function SkyBackdrop() {
   }, []);
 
   return (
-    <div className="sky" aria-hidden="true" ref={layer}>
-      <div className="sky__canvas" ref={canvasHost} />
-      <div className="sky__veil" />
+    <div className="sky" aria-hidden="true">
+      <div className="sky__parallax" ref={layer}>
+        <div className="sky__canvas" ref={canvasHost} />
+        <div className="sky__veil" />
+      </div>
+      <div className="sky__grain" />
     </div>
   );
 }

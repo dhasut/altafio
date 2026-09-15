@@ -11,10 +11,22 @@
   --glass-border: rgba(255, 255, 255, 0.16);
   --header-height: 4.25rem;
   --radius: 1.15rem;
+  /* Sky film grain strength (0 = off, 1 = full). */
+  --sky-grain: 0.4;
 }
 
 * { box-sizing: border-box; }
-html { min-height: 100%; background: var(--sky); scroll-behavior: smooth; }
+html {
+  min-height: 100%;
+  background: var(--sky);
+  scroll-behavior: smooth;
+  /*
+    Native overlay scrollbars (macOS / Win11 auto-hide).
+    Do not set ::-webkit-scrollbar or scrollbar-color on Chromium —
+    those force a classic reserved gutter (sky shows as a solid blue track).
+  */
+  color-scheme: dark;
+}
 body {
   margin: 0;
   min-height: 100vh;
@@ -25,6 +37,14 @@ body {
 }
 a { color: inherit; }
 
+/* Firefox only — thin translucent thumb, no track fill. */
+@supports (-moz-appearance: none) {
+  * {
+    scrollbar-width: thin;
+    scrollbar-color: rgba(247, 251, 255, 0.4) transparent;
+  }
+}
+
 .sky {
   position: fixed;
   inset: -3%;
@@ -32,15 +52,36 @@ a { color: inherit; }
   overflow: hidden;
   background: linear-gradient(180deg, #79b6e3 0%, #5e97cf 55%, #396fab 100%);
   pointer-events: none;
+}
+.sky__parallax {
+  position: absolute;
+  inset: 0;
+  z-index: 0;
   transform: scale(1.06);
   transition: transform 700ms cubic-bezier(.2,.8,.2,1);
   will-change: transform;
 }
-.sky__canvas { position: absolute; inset: 0; }
+.sky__canvas {
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+}
 .sky__canvas canvas { width: 100% !important; height: 100% !important; }
+.sky__grain {
+  position: absolute;
+  inset: 0;
+  z-index: 2;
+  /* Strength: change --sky-grain on :root (not a dense tile + local opacity). */
+  opacity: var(--sky-grain);
+  background-image: url("/gallery/grain.png?v=sparse1");
+  background-repeat: repeat;
+  background-size: 220px 220px;
+  pointer-events: none;
+}
 .sky__veil {
   position: absolute;
   inset: 0;
+  z-index: 1;
   background: linear-gradient(180deg, rgba(8, 22, 43, 0.08), rgba(4, 16, 35, 0.22));
 }
 
@@ -341,7 +382,7 @@ h3 { font-size: 1.25rem; letter-spacing: -0.02em; }
 
 @media (prefers-reduced-motion: reduce) {
   html { scroll-behavior: auto; }
-  .sky { transition: none; }
+  .sky__parallax { transition: none; }
   .button { transition: none; }
 }
 
@@ -350,4 +391,5 @@ h3 { font-size: 1.25rem; letter-spacing: -0.02em; }
     background: rgba(3, 17, 39, 0.95);
     backdrop-filter: none;
   }
+  .sky__grain { opacity: 0; }
 }
