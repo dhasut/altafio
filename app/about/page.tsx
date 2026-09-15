@@ -1,6 +1,10 @@
 import type { Metadata } from "next";
 
-export const metadata: Metadata = { title: "About" };
+export const metadata: Metadata = {
+  title: "About",
+  description:
+    "Altafio is an independent creative technology business bringing design, technology and practical delivery together.",
+};
 
 export default function AboutPage() {
   return (

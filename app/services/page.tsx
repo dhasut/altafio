@@ -1,7 +1,11 @@
 import type { Metadata } from "next";
 import { services } from "@/data/site";
 
-export const metadata: Metadata = { title: "Services" };
+export const metadata: Metadata = {
+  title: "Services",
+  description:
+    "Creative technology, design consultancy, UX/UI, service design and digital transformation from Altafio.",
+};
 
 export default function ServicesPage() {
   return (

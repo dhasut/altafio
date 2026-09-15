@@ -2,7 +2,10 @@ import type { Metadata } from "next";
 import { ProjectCard } from "@/components/site/project-card";
 import { publishedProjects } from "@/data/site";
 
-export const metadata: Metadata = { title: "Projects" };
+export const metadata: Metadata = {
+  title: "Projects",
+  description: "Independent digital products from Altafio, including Dictio.",
+};
 
 export default function ProjectsPage() {
   return (

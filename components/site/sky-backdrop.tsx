@@ -34,8 +34,18 @@ export function SkyBackdrop() {
   useEffect(() => {
     let cancelled = false;
     let effect: VantaEffect | undefined;
+    let started = false;
+    const useIdle = typeof window.requestIdleCallback === "function";
+    let scheduleId = 0;
+
+    // Skip heavy WebGL when the user prefers reduced motion.
+    if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) {
+      return;
+    }
 
     async function startClouds() {
+      if (cancelled || started || !canvasHost.current) return;
+      started = true;
       try {
         await loadScript("/vendor/three.min.js");
         await loadScript("/vendor/vanta.clouds2.min.js");
@@ -68,10 +78,20 @@ export function SkyBackdrop() {
       layer.current.style.transform = `translate3d(${x}px, ${y}px, 0) scale(1.06)`;
     };
 
-    void startClouds();
+    // Defer vendor scripts until after first paint / idle.
+    scheduleId = useIdle
+      ? window.requestIdleCallback(() => {
+          void startClouds();
+        }, { timeout: 1800 })
+      : window.setTimeout(() => {
+          void startClouds();
+        }, 200);
+
     window.addEventListener("pointermove", handlePointer, { passive: true });
     return () => {
       cancelled = true;
+      if (useIdle) window.cancelIdleCallback(scheduleId);
+      else window.clearTimeout(scheduleId);
       window.removeEventListener("pointermove", handlePointer);
       effect?.destroy();
     };

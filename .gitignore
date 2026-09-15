@@ -102,3 +102,6 @@ temp/
 # local agent memory (not for version control)
 AGENTS.md
 memory/
+
+# local working docs (not for version control)
+/doc/

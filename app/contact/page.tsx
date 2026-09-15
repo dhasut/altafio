@@ -1,7 +1,10 @@
 import type { Metadata } from "next";
 import { ContactEmailButton } from "@/components/site/contact-email-button";
 
-export const metadata: Metadata = { title: "Contact" };
+export const metadata: Metadata = {
+  title: "Contact",
+  description: "Contact Altafio for project enquiries and collaboration.",
+};
 
 export default function ContactPage() {
   return (

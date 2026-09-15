@@ -1,7 +1,11 @@
 import type { Metadata } from "next";
 import { ProjectDetail } from "@/components/site/project-detail";
 
-export const metadata: Metadata = { title: "Dictio" };
+export const metadata: Metadata = {
+  title: "Dictio",
+  description:
+    "Dictio is a reader for websites, novels and Markdown with clear read-aloud tools — launching soon from Altafio.",
+};
 
 export default function DictioPage() {
   return (
